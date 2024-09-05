@@ -1,6 +1,7 @@
 package com.example.contactmanager
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,11 @@ class ContactAdapter(private val context: Context, private var contacts: List<Co
         holder.nameTextView.text = contact.name
         holder.phoneTextView.text = contact.phone
         holder.itemView.setOnClickListener {
-            // Handle item click, e.g., open update activity
+            val intent = Intent(context, UpdateContactActivity::class.java)
+            intent.putExtra("CONTACT_ID", contact.id)
+            intent.putExtra("CONTACT_NAME", contact.name)
+            intent.putExtra("CONTACT_PHONE", contact.phone)
+            context.startActivity(intent)
         }
     }
 
